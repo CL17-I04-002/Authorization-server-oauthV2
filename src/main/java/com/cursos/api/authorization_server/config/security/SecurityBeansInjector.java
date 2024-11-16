@@ -18,29 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityBeansInjector {
     @Autowired
     private UserRepository userRepository;
-    /**
-     * We get AuthenticationManager
-     * @param authenticationConfiguration
-     * @return
-     * @throws Exception
-     */
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
 
-    /**
-     * This method helps us to create different strategies security such as LDPA, database, SSO
-     * @return AuthenticationProvider
-     */
-    @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authenticationStrategy = new DaoAuthenticationProvider();
-        authenticationStrategy.setPasswordEncoder(passwordEncoder());
-        authenticationStrategy.setUserDetailsService(userDetailsService());
-
-        return authenticationStrategy;
-    }
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

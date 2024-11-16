@@ -18,6 +18,11 @@ public class RegisteredClientService implements RegisteredClientRepository {
 
     }
 
+    /**
+     * Return clientId (in that context id, clientId will be the same)
+     * @param id the registration identifier
+     * @return
+     */
     @Override
     public RegisteredClient findById(String id) {
         ClientApp clientApp = clientAppRepository.findByClientId(id)

@@ -6,6 +6,7 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,7 +17,6 @@ import org.springframework.security.oauth2.server.authorization.config.annotatio
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
-import org.springframework.stereotype.Component;
 
 import java.security.KeyPair;
 
@@ -25,7 +25,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.UUID;
 
-@Component
+@Configuration
 @EnableWebSecurity
 public class AuthorizationSecurityConfig {
     @Bean
@@ -51,7 +51,7 @@ public class AuthorizationSecurityConfig {
             authConfig.requestMatchers("/login").permitAll();
             authConfig.anyRequest().authenticated();
         });
-        http.formLogin(Customizer.withDefaults());
+        http.formLogin(formLoginConfig -> formLoginConfig.loginPage("/login").permitAll());
 
         return http.build();
     }
@@ -77,7 +77,7 @@ public class AuthorizationSecurityConfig {
     @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
         return AuthorizationServerSettings.builder()
-                .issuer("http://localhost:9595")
+                .issuer("http://localhost:9595/authorization-server")
                 .build();
     }
 
