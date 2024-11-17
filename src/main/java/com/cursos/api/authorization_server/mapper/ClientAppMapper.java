@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ClientAppMapper {
     /**
      * A RegisteredClient is representation of a client registration with an OAuth 2.0 Authorization Server.
-     * so, we're gonna map ClientApp object to RegisteredClient
+     * so, we're going to map ClientApp object to RegisteredClient
      * @param clientApp
      * @return
      */

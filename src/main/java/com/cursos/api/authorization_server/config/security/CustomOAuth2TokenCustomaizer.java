@@ -11,6 +11,10 @@ import java.util.stream.Collectors;
 
 @Component
 public class CustomOAuth2TokenCustomaizer implements OAuth2TokenCustomizer<JwtEncodingContext> {
+    /**
+     * It personalizes JWT only when will be access_token, we could add authorities into claims
+     * @param context the context containing the OAuth 2.0 Token attributes
+     */
     @Override
     public void customize(JwtEncodingContext context) {
         Authentication authentication = context.getPrincipal();
