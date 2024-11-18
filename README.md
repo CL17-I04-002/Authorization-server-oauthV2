@@ -1,4 +1,4 @@
-# Resource Server
+# Authorization Server
 
 Este es un proyecto desarrollado por ing. Daniel Larín el cual consiste en un authorization server para proteger
 al resource server, este proyecto opera con OAuth2
